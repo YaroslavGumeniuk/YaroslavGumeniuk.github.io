@@ -17800,6 +17800,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
 /* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
 /* harmony import */ var _modules_images__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/images */ "./src/js/modules/images.js");
+/* harmony import */ var _modules_myInfo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/myInfo */ "./src/js/modules/myInfo.js");
+
 
 
 
@@ -17820,6 +17822,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
   Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])(".container1", deadline);
   Object(_modules_images__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_modules_myInfo__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 
 /***/ }),
@@ -18063,8 +18066,7 @@ var images = function images() {
   imgPopup.appendChild(bigImage);
   workSection.addEventListener("click", function (e) {
     e.preventDefault();
-    var target = e.target;
-    console.log(target);
+    var target = e.target; // console.log(target);
 
     if (target && target.classList.contains("preview")) {
       setTimeout(function () {
@@ -18199,6 +18201,65 @@ var modals = function modals(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/myInfo.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/myInfo.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var muInfo = function muInfo() {
+  var infoBtn = document.createElement('div');
+  var infoBlock = document.createElement('div');
+  var close = document.createElement('div');
+  infoBtn.innerHTML = "Что реализовано <br> в этом проекте?";
+  infoBlock.innerHTML = "В этом проекте на 'чистом' JS реализовано: <br><br> 1. Модальные окна (кнопки 'Заказать/вызвать'). <br> 2. Табы (секция 'ОСТЕКЛЕНИЕ...'). <br> 3. Формы с отправкой данных на сервер. <br> 4. Форма-калькулятор с последующей отправкой всех введенных данных (кнопка 'Рассчитать стоимость'. После выбора всех параметров данные отправляются на сервер). <br> 5. Таймер обратного отсчета. <br> 6. Увеличение изображений при клике (секция 'НАШИ РАБОТЫ').";
+  close.innerHTML = "&times";
+  infoBtn.style.cssText = "\n                // display: none;\n                position: fixed;\n                background: rgba(255, 245, 255, 0.7);\n                transition: ease-in 0.7s all;\n                width: 300px;\n                height: 100px;\n                border: 3px solid red;\n                left: 100px;\n                top: 150px;\n                border-radius: 20px;\n                cursor: pointer;\n                font-size: 30px;\n                color: #2546bc;\n                text-align: center;\n                line-height: 46px;\n            ";
+  infoBlock.style.cssText = "\n                display: none;\n                opacity: 0;\n                position: fixed;\n                padding: 15px;\n                font-size: 18px;\n                background: rgba(255, 245, 255, 0.7);\n                transition: ease-in 0.7s all;\n                width: 480px;\n                min-height: 300px;\n                border: 2px solid #2546bc;\n                left: 100px;\n                top: 150px;\n                border-radius: 20px;\n            ";
+  close.style.cssText = "\n                position: fixed;\n                left: 585px;\n                top: 145px;\n                width: 50px;\n                height: 50px;\n                font-size: 60px;\n                color: red;\n                line-height: 42px;\n                text-align: center;\n                cursor: pointer;\n            ";
+  document.body.append(infoBtn);
+  document.body.append(infoBlock);
+  infoBlock.append(close);
+
+  function showBlock() {
+    infoBtn.style.display = 'none';
+    infoBtn.style.opacity = '0';
+    infoBlock.style.display = 'block';
+    setTimeout(function () {
+      infoBlock.style.opacity = '1';
+    }, 20);
+  }
+
+  function hideBlock() {
+    infoBtn.style.display = 'block';
+    setTimeout(function () {
+      infoBtn.style.opacity = '1';
+    }, 20);
+    infoBlock.style.opacity = '0';
+    setTimeout(function () {
+      infoBlock.style.display = 'none';
+    }, 500);
+  }
+
+  infoBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    showBlock();
+  });
+  close.addEventListener('click', function () {
+    hideBlock();
+  });
+  document.addEventListener('click', function (e) {
+    hideBlock();
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (muInfo);
 
 /***/ }),
 
